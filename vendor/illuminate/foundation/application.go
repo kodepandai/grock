@@ -7,13 +7,9 @@ type Application struct {
   BasePath string
 }
 
-func NewApplication(basePath string) Application {
+func CreateApplication(basePath string) Application {
   app:= Application {BasePath: basePath}
-  app.initData()
+  app.Container.Init()
   return app
-}
-
-func (app *Application) initData(){
-  app.Instances = make(map[string]interface{})
 }
 

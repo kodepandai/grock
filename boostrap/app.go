@@ -11,6 +11,8 @@ func App() foundation.Application {
 	if err !=nil {
 	  panic(err)
 	}
-	return foundation.NewApplication(cwd)
+	app:= foundation.CreateApplication(cwd)
+	app.Bind("HttpKernel", func()string{return "HALLO"}, false)
 
+	return app
 }

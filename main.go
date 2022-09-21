@@ -5,8 +5,14 @@ import (
 	"grock/boostrap"
 )
 
+type User struct {
+	Id int
+	Name string
+}
 func main() {
 	app:= boostrap.App()
-	app.Instances["x"] = "Instance X"
-  fmt.Println(app)
+
+	x:=app.Make("HttpKernel", nil).(func()string)
+	fmt.Println(x())
 }
+
