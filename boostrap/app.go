@@ -1,8 +1,8 @@
 package boostrap
 
 import (
-	"illuminate/foundation"
-	"illuminate/foundation/http"
+	"grock/src/illuminate/foundation"
+	"grock/app/http"
 	"os"
 )
 
@@ -13,7 +13,7 @@ func App() foundation.Application {
 	  panic(err)
 	}
 	app:= foundation.CreateApplication(cwd)
-	app.Singleton("HttpKernel", http.Kernel{App:app})
+	app.Singleton("HttpKernel", http.Kernel{})
 
 	return app
 }

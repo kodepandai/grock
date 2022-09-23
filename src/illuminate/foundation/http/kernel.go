@@ -1,8 +1,8 @@
 package http
 
 import (
-	"illuminate/foundation"
-	"illuminate/foundation/bootstrap"
+	"grock/src/illuminate/foundation"
+	"grock/src/illuminate/foundation/bootstrap"
 )
 
 type Kernel struct {

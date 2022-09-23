@@ -1,7 +1,7 @@
 package foundation
 
 import (
-	"illuminate/container"
+	"grock/src/illuminate/container"
 )
 
 type Bootstrapper interface {

@@ -3,10 +3,8 @@ package main
 import (
 	"fmt"
 	"grock/boostrap"
-	"illuminate/foundation/bootstrap"
-	"illuminate/foundation/http"
+	"grock/app/http"
 	"os"
-	"reflect"
 )
 
 type User struct {
@@ -17,10 +15,10 @@ type User struct {
 func main() {
 	defer func() { //catch or finally
 		if err := recover(); err != nil { //catch
-			if (reflect.TypeOf(err) == reflect.TypeOf(bootstrap.HttpException{})){
-				fmt.Println("ini erre http ")
-				return
-			}
+			// if (reflect.TypeOf(err) == reflect.TypeOf(bootstrap.HttpException{})){
+			// 	fmt.Println("ini erre http ")
+			// 	return
+			// }
 			fmt.Fprintf(os.Stderr, "Exception: %v\n", err)
 			os.Exit(1)
 		}
@@ -29,4 +27,6 @@ func main() {
 
 	Kernel := app.Make("HttpKernel", nil).(http.Kernel)
 	Kernel.Start()
+	port := os.Getenv("PORT")
+	fmt.Printf("server run in port: %s \n", port)
 }

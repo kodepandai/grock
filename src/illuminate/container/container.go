@@ -1,8 +1,5 @@
 package container
 
-import(
-)
-
 type Binding struct {
   Concrete any
   Shared bool
