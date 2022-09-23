@@ -1,6 +1,12 @@
 package foundation
 
-import "illuminate/container"
+import (
+	"illuminate/container"
+)
+
+type Bootstrapper interface {
+  Bootstrap(*Application)
+}
 
 type Application struct {
   container.Container
@@ -13,3 +19,8 @@ func CreateApplication(basePath string) Application {
   return app
 }
 
+func(app *Application) BootstrapWith(bootstrappers []Bootstrapper){
+	for _, bootstrapper := range bootstrappers {
+		bootstrapper.Bootstrap(app)
+	}
+}

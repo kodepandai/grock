@@ -2,6 +2,7 @@ package boostrap
 
 import (
 	"illuminate/foundation"
+	"illuminate/foundation/http"
 	"os"
 )
 
@@ -12,7 +13,7 @@ func App() foundation.Application {
 	  panic(err)
 	}
 	app:= foundation.CreateApplication(cwd)
-	app.Bind("HttpKernel", func()string{return "HALLO"}, false)
+	app.Singleton("HttpKernel", http.Kernel{App:app})
 
 	return app
 }
