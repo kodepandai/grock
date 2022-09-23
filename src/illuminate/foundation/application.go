@@ -13,10 +13,10 @@ type Application struct {
   BasePath string
 }
 
-func CreateApplication(basePath string) Application {
+func CreateApplication(basePath string) *Application {
   app:= Application {BasePath: basePath}
   app.Container.Init()
-  return app
+  return &app
 }
 
 func(app *Application) BootstrapWith(bootstrappers []Bootstrapper){

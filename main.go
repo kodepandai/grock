@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"grock/boostrap"
 	"grock/app/http"
+	"grock/boostrap"
 	"os"
 )
 
@@ -23,7 +23,7 @@ func main() {
 			os.Exit(1)
 		}
 	}()
-	app := boostrap.App()
+	app := boostrap.App
 
 	Kernel := app.Make("HttpKernel", nil).(http.Kernel)
 	Kernel.Start()

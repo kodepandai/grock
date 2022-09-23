@@ -29,9 +29,8 @@ func (c *Container) Singleton(abstract string, concrete any){
 func (c *Container) Build(abstract string, params any) any{
   concrete:= c.Bindings[abstract].Concrete;
 
-  // check if the concrete is functio
   if(c.Bindings[abstract].Shared){
-    c.Instances[abstract] = concrete;
+    c.Instances[abstract] = &concrete;
   }
   return concrete;
 }

@@ -1,19 +1,17 @@
 package boostrap
 
 import (
-	"grock/src/illuminate/foundation"
 	"grock/app/http"
+	"grock/src/illuminate/foundation"
 	"os"
 )
-
-func App() foundation.Application {
+var App *foundation.Application
+func init() {
  // get current working directory, set as basePath
   cwd, err:= os.Getwd()
 	if err !=nil {
 	  panic(err)
 	}
-	app:= foundation.CreateApplication(cwd)
-	app.Singleton("HttpKernel", http.Kernel{})
-
-	return app
+	App = foundation.CreateApplication(cwd)
+	App.Singleton("HttpKernel", http.Kernel{})
 }
