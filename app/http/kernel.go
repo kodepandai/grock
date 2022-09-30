@@ -1,7 +1,10 @@
-package http;
+package http
 
-import "grock/src/illuminate/foundation/http"
+import "grock/src/foundation/http"
 
-type Kernel struct {
-  http.Kernel
+var Kernel *http.Kernel
+
+func init() {
+	httpKernel := http.Kernel{}
+	Kernel = &httpKernel
 }

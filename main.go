@@ -24,9 +24,9 @@ func main() {
 		}
 	}()
 	app := boostrap.App
-
-	Kernel := app.Make("HttpKernel", nil).(http.Kernel)
-	Kernel.Start()
+	http.Kernel.App = *app
+	http.Kernel.Start()
 	port := os.Getenv("PORT")
 	fmt.Printf("server run in port: %s \n", port)
+
 }
