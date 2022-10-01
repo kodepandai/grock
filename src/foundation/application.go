@@ -13,6 +13,7 @@ type Application struct {
 	BasePath string
 	Config   AppConfig
 	configs  map[string]interface{}
+	isBooted bool
 }
 
 func CreateApplication(basePath string) *Application {
@@ -39,4 +40,14 @@ func (app *Application) RegisterConfiguredProviders() {
 		provider.Init(app)
 		provider.Register()
 	}
+}
+
+func (app *Application) Boot() {
+	if app.isBooted {
+		return
+	}
+	for _, provider := range app.Config.Providers {
+		provider.Boot()
+	}
+	app.isBooted = true
 }

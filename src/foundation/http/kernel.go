@@ -17,6 +17,7 @@ func (k *Kernel) InitDefaultBootstrapper() {
 		bootstrap.LoadEnvironmentVariable{},
 		bootstrap.LoadConfiguration{},
 		bootstrap.RegisterProviders{},
+		bootstrap.BootProviders{},
 	)
 	// TODO: register more bootstrappers here
 }

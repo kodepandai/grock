@@ -1,6 +1,7 @@
 package providers
 
 import (
+	"fmt"
 	"grock/src/foundation"
 )
 
@@ -9,9 +10,11 @@ type AppServiceProvider struct {
 }
 
 func (s *AppServiceProvider) Register() {
+	fmt.Println("app registered")
 }
 
 func (s *AppServiceProvider) Boot() {
+	fmt.Println("app booted")
 }
 
 func (s *AppServiceProvider) Init(app *foundation.Application) {
