@@ -15,7 +15,9 @@ type Kernel struct {
 func (k *Kernel) InitDefaultBootstrapper() {
 	k.Bootstrappers = append(k.Bootstrappers,
 		bootstrap.LoadEnvironmentVariable{},
-		bootstrap.LoadConfiguration{})
+		bootstrap.LoadConfiguration{},
+		bootstrap.RegisterProviders{},
+	)
 	// TODO: register more bootstrappers here
 }
 

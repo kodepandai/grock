@@ -1,8 +1,6 @@
 package bootstrap
 
 import (
-	"fmt"
-	"grock/src/config"
 	"grock/src/foundation"
 )
 
@@ -13,10 +11,9 @@ func (l LoadConfiguration) Bootstrap(app *foundation.Application) {
 
 	// check and load Application config
 	if appConfig, ok := configs["app"]; ok {
-		app.Config = appConfig.(config.App)
+		app.Config = appConfig.(foundation.AppConfig)
 	} else {
 		panic("Cannot find app config")
 	}
-	fmt.Println(app.Config)
 
 }

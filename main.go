@@ -28,6 +28,5 @@ func main() {
 	http.Kernel.Start()
 	port := os.Getenv("PORT")
 	fmt.Printf("server run in port: %s \n", port)
-	fmt.Println(app.Config)
 
 }

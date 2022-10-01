@@ -1,14 +1,18 @@
 package config
 
 import (
-	"grock/src/config"
+	"grock/app/providers"
+	"grock/src/foundation"
 	"grock/src/support"
 )
 
-var App config.App
+var App foundation.AppConfig
 
 func init() {
-	App = config.App{
+	App = foundation.AppConfig{
 		AppName: support.Env("APP_NAME", "GROCK"),
+		Providers: []foundation.ServiceProvider{
+			&providers.AppServiceProvider{},
+		},
 	}
 }

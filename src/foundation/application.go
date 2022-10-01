@@ -1,14 +1,17 @@
 package foundation
 
-import "grock/src/config"
-
 type Bootstrapper interface {
 	Bootstrap(*Application)
 }
 
+type AppConfig struct {
+	AppName   string
+	Providers []ServiceProvider
+}
+
 type Application struct {
 	BasePath string
-	Config   config.App
+	Config   AppConfig
 	configs  map[string]interface{}
 }
 
@@ -29,4 +32,11 @@ func (app *Application) RegisterConfigs(configs map[string]interface{}) {
 
 func (app *Application) GetConfigs() map[string]interface{} {
 	return app.configs
+}
+
+func (app *Application) RegisterConfiguredProviders() {
+	for _, provider := range app.Config.Providers {
+		provider.Init(app)
+		provider.Register()
+	}
 }
