@@ -1,6 +1,7 @@
 package boostrap
 
 import (
+	"grock/app/exceptions"
 	"grock/config"
 	"grock/src/foundation"
 	"os"
@@ -18,4 +19,5 @@ func init() {
 	App.RegisterConfigs(map[string]interface{}{
 		"app": config.App,
 	})
+	App.ExceptionHandler = exceptions.Handler
 }
