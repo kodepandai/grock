@@ -49,10 +49,25 @@ func (k *Kernel) Start() {
 		k.Send(w, response)
 	}
 
-	// this is just for route testing purpose
-	server.GET("/", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-		k.Send(w, response.Make("HALOO", http.StatusOK, nil))
-	})
+	routes := k.App.Router.GetRoutes()
+	for _, route := range routes {
+		uri := route.Uri
+		action := route.Action
+		method := route.Method
+		server.Handle(method, uri, func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+			actionResult := action.Call(nil)
+			var res grockHttp.Response
+			switch val := actionResult[0].Interface().(type) {
+			case grockHttp.Response:
+				res = val
+			case grockHttp.Responsable:
+				res = val.ToResponse()
+			default:
+				res = response.Make(val, http.StatusOK, nil)
+			}
+			k.Send(w, res)
+		})
+	}
 	port := support.Env("PORT", "8000")
 	done := make(chan bool)
 

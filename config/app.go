@@ -13,6 +13,8 @@ func init() {
 		AppName: support.Env("APP_NAME", "GROCK"),
 		Providers: []foundation.ServiceProvider{
 			&providers.AppServiceProvider{},
+			&providers.RouteServiceProvider{},
 		},
 	}
+
 }

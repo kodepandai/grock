@@ -1,6 +1,9 @@
 package foundation
 
-import "grock/src/foundation/exception"
+import (
+	"grock/src/foundation/exception"
+	"grock/src/routing"
+)
 
 type Bootstrapper interface {
 	Bootstrap(*Application)
@@ -15,6 +18,7 @@ type Application struct {
 	BasePath         string
 	Config           AppConfig
 	ExceptionHandler exception.Handler
+	Router           *routing.Router
 
 	configs  map[string]interface{}
 	isBooted bool
